@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Store Bill Calculator</title>
+</head>
+<body>
+
+    <h2>Online Store Bill Calculator</h2>
+
+    <!-- Input for number of items -->
+    <label>Enter Number of Items:</label>
+    <input type="number" id="numItems" min="1">
+    <button onclick="calculateBill()">Calculate Bill</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+        function calculateBill() {
+            let numItems = document.getElementById("numItems").value;
+            let totalBill = 0;
+
+            // Loop to get price of each item
+            for (let i = 1; i <= numItems; i++) {
+                let price = parseFloat(prompt("Enter price for item " + i + " (₹):"));
+                totalBill += price;
+            }
+
+            let discount = 0;
+            let finalAmount = totalBill;
+
+            // Apply 10% discount if total exceeds ₹5000
+            if (totalBill > 5000) {
+                discount = totalBill * 0.10;
+                finalAmount = totalBill - discount;
+            }
+
+            // Display result
+            document.getElementById("result").innerHTML =
+                "Total Bill: ₹" + totalBill.toFixed(2) + "<br>" +
+                "Discount: ₹" + discount.toFixed(2) + "<br>" +
+                "Final Payable Amount: ₹" + finalAmount.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
